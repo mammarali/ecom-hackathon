@@ -16,7 +16,7 @@ export type Content = {
   sale_badge: string;
   brands: IImage;
   hero_image: IImage;
-  ero_desc: string;
+  hero_description: string;
   promotion_info: string;
   promotion_desc: string;
   promo_info: string;
@@ -42,6 +42,7 @@ export type CartProduct = {
   title: string;
   name: string;
   price: number;
+  slug: Slug;
   detail: string;
   totalPrice: number;
   category: string;

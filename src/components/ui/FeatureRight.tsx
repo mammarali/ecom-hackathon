@@ -1,7 +1,6 @@
 import React from "react";
 import featurePic from "/public/feature.webp";
 import Image from "next/image";
-import { ShoppingCart } from "lucide-react";
 import { Button } from "./button";
 import Link from "next/link";
 

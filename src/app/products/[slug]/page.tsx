@@ -1,7 +1,6 @@
-import { Product } from "@/utils/types";
-import { Slug, SlugComponents } from "sanity";
-import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
+import { Product, CartProduct } from "@/utils/types";
+import { Slug } from "sanity";
+
 import { client } from "../../../../sanity/lib/client";
 import { getProductData } from "@/utils/productData";
 import ProductDetail from "@/views/ProductDetail";
@@ -27,11 +26,22 @@ interface Props {
 export default async function getProduct({ params }: Props) {
   const slug = params.slug;
 
-  const product: Product = await getProductData(slug);
+  const product: CartProduct = await getProductData(slug);
 
   return <ProductDetail product={product} />;
 }
 
+export async function generateStaticParams() {
+  const query = `*[_type == "product"]{
+    slug{
+      current
+    }
+  }`;
+  const res: Product[] = await client.fetch(query);
+  return res.map((product) => ({
+    slug: product.slug.current,
+  }));
+}
 //------------------------------------------------------------------------------------------
 // fetch particular data of product using slug
 // async function fetchPreviewData(slug: Slug) {

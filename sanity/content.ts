@@ -23,7 +23,7 @@ export const content = defineType({
       type: "image",
     }),
     defineField({
-      name: "hero_desc",
+      name: "hero_description",
       title: "Hero Description",
       type: "string",
     }),

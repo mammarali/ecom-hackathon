@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { ShoppingCart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
 const ProductSideMenu = () => {

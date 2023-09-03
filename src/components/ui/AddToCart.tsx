@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "./button";
 import { ShoppingCart } from "lucide-react";
-import { useDispatch } from "react-redux";
 import { cartActions } from "@/store/slice/cartSlice";
 import { useAppDispatch } from "@/store/store";
 import React, { useState } from "react";

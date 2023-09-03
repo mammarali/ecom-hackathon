@@ -1,11 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Quantity from "@/components/ui/Quantity";
-import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
-import React, { useState, FC } from "react";
-import { Product, CartProduct } from "@/utils/types";
+import React, { useState } from "react";
+import { CartProduct } from "@/utils/types";
 import { urlForImage } from "../../sanity/lib/image";
 import AddToCart from "@/components/ui/AddToCart";
 //

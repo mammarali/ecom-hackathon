@@ -3,43 +3,18 @@
 import React from "react";
 import { Product } from "@/utils/types";
 import ProductCard from "@/components/ui/ProductCard";
-import { GetServerSideProps } from "next";
-// Sanity Client
-import { client } from "../../sanity/lib/client";
-import { urlForImage } from "../../sanity/lib/image";
-import { Image as IImage } from "sanity";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import { tagline } from "sanity/tagline";
-
-// export const getProductsData = async () => {
-//   return await client.fetch(`*[_type=="product"]{
-//   title,
-//     slug,
-//     price,
-//     category,
-//     image,
-//     detail,
-//     care
-// }`);
-// };
 
 interface ProductProps {
   products: Product[];
 }
 
 const ProductList = ({ products }: ProductProps) => {
-  // const data: Product[] = await getProductsData();
-  //const filterData = products.slice(0, 3);
-
-  // const productArray = Object.entries(products).map(([key, value]) =>
-  //   console.log(value.tagline)
-  // );
-  //console.log(productArray);
   return (
     <div className="mx-8 sm:mx-16 lg:mx-24 xl:mx-32">
       <div className="w-full mt-6">
@@ -93,24 +68,3 @@ const ProductList = ({ products }: ProductProps) => {
 };
 
 export default ProductList;
-
-// export const getServerSideProps = async () => {
-//   const query = `*[_type=="product"]{
-//   slug,
-//   image,
-//   price,
-//   tagline,
-//   category,
-//   care,
-//   detail,
-//   title,
-// }`;
-//   const products: Product[] = await client.fetch(query);
-//   console.log(products);
-//   // const bannerQuery = '*[_type == "banner"]';
-//   // const bannerData = await client.fetch(bannerQuery);
-
-//   return {
-//     props: { products },
-//   };
-// };

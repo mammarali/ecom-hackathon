@@ -1,7 +1,5 @@
-import React, { lazy } from "react";
-import Image from "next/image";
+import React from "react";
 import Hero from "@/views/Hero";
-import ProductList from "@/views/ProductList";
 import Promotion from "@/views/Promotion";
 import Features from "@/views/Features";
 import Newsletter from "@/views/Newsletter";

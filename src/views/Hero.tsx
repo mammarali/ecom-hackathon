@@ -2,20 +2,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import heroImage from "/public/hero_pic.webp";
-import featureImage1 from "/public/featured1.webp";
-import featureImage2 from "/public/featured2.webp";
-import featureImage3 from "/public/featured3.webp";
-import featureImage4 from "/public/featured4.webp";
 import Link from "next/link";
 import Image from "next/image";
-import { Image as IImage } from "sanity";
 import { client } from "../../sanity/lib/client";
 import { urlForImage } from "../../sanity/lib/image";
 import { Content } from "@/utils/types";
 
 export const getContentData = async () => {
-  const res = await client.fetch(`*[_type=="content"]`);
-
+  const contentQuery = `*[_type == "content"]`;
+  const res = await client.fetch(contentQuery);
+  console.log(res);
   return res;
 };
 const logos = await client.fetch(`*[_type=="content"]{brands[]
@@ -44,7 +40,7 @@ export default async function Hero() {
             </h1>
 
             <p className="leading-7 [&:not(:first-child)]:mt-6">
-              {item.hero_desc}
+              {item.hero_description}
             </p>
             <Link href="./products">
               <Button className="bg-black h-12 px-10 mt-6 rounded-none">

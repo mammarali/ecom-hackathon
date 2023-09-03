@@ -3,11 +3,11 @@
 import Link from "next/link";
 import logo from "/public/logo.webp";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 
 import ProductSideMenu from "../ui/ProductSideMenu";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
 const Header = () => {
