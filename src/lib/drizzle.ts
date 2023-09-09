@@ -1,7 +1,7 @@
-import { InferModel } from "drizzle-orm";
-import { pgTable, integer, varchar, serial, text } from "drizzle-orm/pg-core";
-import { drizzle } from "drizzle-orm/vercel-postgres";
 import { sql } from "@vercel/postgres";
+import { InferModel } from "drizzle-orm";
+import { pgTable, integer, varchar, text, serial } from "drizzle-orm/pg-core";
+import { drizzle } from "drizzle-orm/vercel-postgres";
 
 export const cartTable = pgTable("cart", {
   id: serial("id").primaryKey().notNull(),
