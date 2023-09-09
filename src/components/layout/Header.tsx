@@ -41,7 +41,6 @@ const Header = () => {
           href="/cart"
           className="hidden md:flex justify-center items-center gap-2"
         >
-          <UserButton afterSignOutUrl="/" />
           <div>
             <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
           </div>

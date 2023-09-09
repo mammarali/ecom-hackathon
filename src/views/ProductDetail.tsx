@@ -11,12 +11,11 @@ import { auth } from "@clerk/nextjs";
 // Type definition for Component Props
 interface ProductProps {
   product: ProductDetails;
-  userId: string;
 }
 
 // This is the Component function for rendering details of a Single Product (fetched from Sanity)
 // using props parameter when we click on Single Product
-const ProductDetail: React.FC<ProductProps> = ({ product, userId }) => {
+const ProductDetail: React.FC<ProductProps> = ({ product }) => {
   // "product" is the return of data fetching from Sanity
 
   const cartPorduct: CartProduct = {
@@ -106,11 +105,7 @@ const ProductDetail: React.FC<ProductProps> = ({ product, userId }) => {
                 </div> */}
                 <div className="flex items-end mt-6 gap-x-3">
                   <div>
-                    <AddToCart
-                      product={cartPorduct}
-                      qty={1}
-                      userId={userId as string}
-                    />
+                    <AddToCart product={cartPorduct} qty={1} />
                   </div>
                   <div className="text-xl font-bold">
                     ${product.price.toFixed(2)}

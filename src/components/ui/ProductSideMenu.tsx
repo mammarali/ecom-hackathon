@@ -50,7 +50,6 @@ const ProductSideMenu = () => {
                 <div>
                   <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
                 </div>
-                <UserButton afterSignOutUrl="/" />
               </Link>
               <ul className="uppercase">
                 <Link href="/female" onClick={handleNav}>

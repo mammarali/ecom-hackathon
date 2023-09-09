@@ -21,18 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClerkProvider
-          publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-        >
-          <Providers>
-            <main>
-              <Header />
+        <Providers>
+          <main>
+            <Header />
 
-              {children}
-              <Footer />
-            </main>
-          </Providers>
-        </ClerkProvider>
+            {children}
+            <Footer />
+          </main>
+        </Providers>
       </body>
     </html>
   );

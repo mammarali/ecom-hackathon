@@ -3,7 +3,7 @@ import { Button } from "./button";
 import { ShoppingCart } from "lucide-react";
 import { cartActions } from "@/store/slice/cartSlice";
 import { useAppDispatch } from "@/store/store";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import toast from "react-hot-toast";
 import { CartProduct } from "@/utils/types";
 import { urlForImage } from "../../../sanity/lib/image";
@@ -12,7 +12,6 @@ import { Cart } from "@/lib/drizzle";
 type IProps = {
   product: CartProduct;
   qty: number;
-  userId: string;
 };
 
 type CartData = {
@@ -22,8 +21,9 @@ type CartData = {
 };
 
 const AddToCart = (props: IProps) => {
+  const userId = "abc123";
   const getDataFromDB = async () => {
-    const res = await fetch(`/api/cart/${props.userId}`);
+    const res = await fetch(`/api/cart/${userId}`);
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
