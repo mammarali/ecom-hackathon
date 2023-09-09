@@ -2,20 +2,33 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { CartProduct } from "@/utils/types";
+import { CartProduct, Product, ProductDetails } from "@/utils/types";
 import { urlForImage } from "../../sanity/lib/image";
 import AddToCart from "@/components/ui/AddToCart";
+import { auth } from "@clerk/nextjs";
 //
 
 // Type definition for Component Props
 interface ProductProps {
-  product: CartProduct;
+  product: ProductDetails;
+  userId: string;
 }
 
 // This is the Component function for rendering details of a Single Product (fetched from Sanity)
 // using props parameter when we click on Single Product
-const ProductDetail: React.FC<ProductProps> = ({ product }) => {
+const ProductDetail: React.FC<ProductProps> = ({ product, userId }) => {
   // "product" is the return of data fetching from Sanity
+
+  const cartPorduct: CartProduct = {
+    _id: product._id,
+    title: product.title,
+    price: product.price,
+    totalPrice: product.totalPrice,
+    tagline: product.tagline,
+    image: product.image,
+    quantity: product.quantity,
+    userId: product.userId,
+  };
 
   const sizes = ["XS", "S", "M", "L", "XL"];
 
@@ -93,7 +106,11 @@ const ProductDetail: React.FC<ProductProps> = ({ product }) => {
                 </div> */}
                 <div className="flex items-end mt-6 gap-x-3">
                   <div>
-                    <AddToCart product={product} qty={1} />
+                    <AddToCart
+                      product={cartPorduct}
+                      qty={1}
+                      userId={userId as string}
+                    />
                   </div>
                   <div className="text-xl font-bold">
                     ${product.price.toFixed(2)}

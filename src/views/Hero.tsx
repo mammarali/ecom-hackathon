@@ -11,7 +11,7 @@ import { Content } from "@/utils/types";
 export const getContentData = async () => {
   const contentQuery = `*[_type == "content"]`;
   const res = await client.fetch(contentQuery);
-  console.log(res);
+
   return res;
 };
 const logos = await client.fetch(`*[_type=="content"]{brands[]

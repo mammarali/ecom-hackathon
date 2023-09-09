@@ -1,22 +1,6 @@
 import { client } from "../../sanity/lib/client";
-import { Product, CartProduct } from "./types";
+import { Product, CartProduct, ProductDetails } from "./types";
 import { Slug } from "sanity";
-
-// export async function getProductsData(): Promise<Product> {
-//   const productsQuery = `*[_type == "product"]{
-//   slug,
-//   image,
-//   price,
-//   tagline->{name},
-//   category->{name},
-//   care,
-//   detail,
-//   title,
-// }`;
-//   const products = await client.fetch(productsQuery);
-
-//   return products;
-// }
 
 export const getProductsData = async (): Promise<Product[]> => {
   return await client.fetch(`*[_type=="product"]{
@@ -31,7 +15,7 @@ export const getProductsData = async (): Promise<Product[]> => {
 }`);
 };
 
-export async function getProductData(slug: Slug): Promise<CartProduct> {
+export async function getProductData(slug: Slug): Promise<ProductDetails> {
   const productQuery = `*[_type == "product" && slug.current == $slug][0]{
   _id,
     slug,
@@ -47,7 +31,6 @@ export async function getProductData(slug: Slug): Promise<CartProduct> {
 
   return product;
 }
-// export const data = await getProductsData();
 
 export const getFemaleData = async (): Promise<Product[]> => {
   return await client.fetch(

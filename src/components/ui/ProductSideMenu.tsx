@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { UserButton } from "@clerk/nextjs";
 
 const ProductSideMenu = () => {
   const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);
@@ -42,9 +43,15 @@ const ProductSideMenu = () => {
             </div>
             <div className="border-b border-gray-300 my-4"></div>
             <div className="py-4 flex flex-col">
-              <div>
-                <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
-              </div>
+              <Link
+                href="/cart"
+                className="flex items-center justify-between gap-2"
+              >
+                <div>
+                  <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
+                </div>
+                <UserButton afterSignOutUrl="/" />
+              </Link>
               <ul className="uppercase">
                 <Link href="/female" onClick={handleNav}>
                   <li className="py-4 text-sm">Female</li>

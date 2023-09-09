@@ -11,6 +11,21 @@ export type Product = {
   slug: Slug;
 };
 
+export type ProductDetails = {
+  _id: string;
+  title: string;
+  detail: string;
+  price: number;
+  quantity: number;
+  totalPrice: number;
+  tagline: string;
+  userId: string;
+  category: string;
+  care: string[];
+  image: IImage[];
+  slug: Slug;
+};
+
 export type Content = {
   hero_main: string;
   sale_badge: string;
@@ -40,14 +55,9 @@ export type Logos = {
 export type CartProduct = {
   _id: string;
   title: string;
-  name: string;
   price: number;
-  slug: Slug;
-  detail: string;
   totalPrice: number;
-  category: string;
   tagline: string;
-  care: string[];
   image: IImage[];
   quantity: number;
   userId: string;

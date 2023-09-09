@@ -1,8 +1,7 @@
 import { InferModel } from "drizzle-orm";
 import { pgTable, integer, varchar, serial, text } from "drizzle-orm/pg-core";
 import { drizzle } from "drizzle-orm/vercel-postgres";
-import { createPool, sql } from "@vercel/postgres";
-import pg from "pg";
+import { sql } from "@vercel/postgres";
 
 export const cartTable = pgTable("cart", {
   id: serial("id").primaryKey().notNull(),
@@ -18,11 +17,5 @@ export const cartTable = pgTable("cart", {
 
 export type Cart = InferModel<typeof cartTable>;
 export type addToCart = InferModel<typeof cartTable, "insert">;
-
-// const { Pool } = pg;
-
-// export const db = new Pool({
-//   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-// });
 
 export const db = drizzle(sql);

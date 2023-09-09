@@ -9,6 +9,7 @@ import ProductSideMenu from "../ui/ProductSideMenu";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);
@@ -36,9 +37,15 @@ const Header = () => {
 
         <ProductSideMenu></ProductSideMenu>
 
-        <div className="hidden md:flex">
-          <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
-        </div>
+        <Link
+          href="/cart"
+          className="hidden md:flex justify-center items-center gap-2"
+        >
+          <UserButton afterSignOutUrl="/" />
+          <div>
+            <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
+          </div>
+        </Link>
       </div>
     </div>
   );
