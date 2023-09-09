@@ -9,7 +9,6 @@ import ProductSideMenu from "../ui/ProductSideMenu";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);

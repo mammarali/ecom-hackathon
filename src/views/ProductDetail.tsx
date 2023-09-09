@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { CartProduct, Product, ProductDetails } from "@/utils/types";
 import { urlForImage } from "../../sanity/lib/image";
 import AddToCart from "@/components/ui/AddToCart";
-import { auth } from "@clerk/nextjs";
+
 //
 
 // Type definition for Component Props

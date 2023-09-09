@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { UserButton } from "@clerk/nextjs";
 
 const ProductSideMenu = () => {
   const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);
