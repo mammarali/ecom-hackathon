@@ -19,7 +19,7 @@ export const GET = async (
         _id: item.product_id,
         title: item.product_name,
         price: item.price,
-        totalPrice: item.total_price,
+        total_price: item.total_price,
         tagline: item.tagline,
         image: item.image,
         quantity: item.quantity,
@@ -30,12 +30,12 @@ export const GET = async (
         (total, item) => total + item.quantity,
         0
       );
-      const totalPrice = cartItems.reduce(
-        (total, item) => total + item.totalPrice,
+      const totalAmount = cartItems.reduce(
+        (total, item) => total + item.total_price,
         0
       );
       return NextResponse.json(
-        { cartItems, totalQuantity, totalPrice },
+        { cartItems, totalQuantity, totalAmount },
         { status: 200 }
       );
     }

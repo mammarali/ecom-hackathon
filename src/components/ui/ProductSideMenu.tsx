@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { UserButton } from "@clerk/nextjs";
 
 const ProductSideMenu = () => {
   const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);
@@ -46,6 +47,7 @@ const ProductSideMenu = () => {
                 href="/cart"
                 className="flex items-center justify-between gap-2"
               >
+                <UserButton afterSignOutUrl="/" />
                 <div>
                   <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
                 </div>

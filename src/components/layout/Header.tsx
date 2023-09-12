@@ -3,14 +3,22 @@
 import Link from "next/link";
 import logo from "/public/logo.webp";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 import ProductSideMenu from "../ui/ProductSideMenu";
 import ShoppingCartIcon from "../ui/ShoppingCartIcon";
 import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { RootState, useAppDispatch } from "@/store/store";
+import { fetchData } from "@/store/slice/cartSlice";
+import { UserButton } from "@clerk/nextjs";
 
-const Header = () => {
+const Header = ({ userId }: { userId: string }) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchData(userId));
+  }, [dispatch, userId]);
+
   const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);
   return (
     <div className="mx-8 sm:mx-16 lg:mx-24 xl:mx-32">
@@ -40,6 +48,7 @@ const Header = () => {
           href="/cart"
           className="hidden md:flex justify-center items-center gap-2"
         >
+          <UserButton afterSignOutUrl="/" />
           <div>
             <ShoppingCartIcon cartValue={cartValue}></ShoppingCartIcon>
           </div>

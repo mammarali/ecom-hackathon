@@ -10,6 +10,7 @@ interface Props {
   cartItem: CartProduct;
 }
 const CartProductCard = ({ cartItem }: Props) => {
+  console.log(cartItem.image);
   const [qty, setQty] = useState(cartItem.quantity);
   const dispatch = useAppDispatch();
   const handleCartQuantity = async (newQty: number) => {
@@ -77,7 +78,8 @@ const CartProductCard = ({ cartItem }: Props) => {
       <div className=" w-4/5 h-1/5 sm:w-3/5 sm:h-1/3 md:w-1/2 md:h-2/5 lg:w-1/2 lg:h-full ">
         <Image
           className="w-full h-full rounded-lg"
-          src={urlForImage(cartItem.image[0]).url()}
+          // src={urlForImage(cartItem.image[0]).url()}
+          src={cartItem.image as unknown as string}
           alt={cartItem.title}
           width={280}
           height={350}
@@ -92,11 +94,11 @@ const CartProductCard = ({ cartItem }: Props) => {
 
           <Trash2 onClick={removeItem} className="cursor-pointer" />
         </div>
-        {Object.entries(cartItem.tagline).map(([key, value]) => (
-          <p key={key} className="text-lg text-gray-500 font-semibold">
-            {value}
-          </p>
-        ))}
+
+        <p className="text-lg text-gray-500 font-semibold">
+          {cartItem.tagline}
+        </p>
+
         <p className="text-lg font-bold text-gray-700">Delivery Estimation</p>
         <p className="font-bold text-[#ffc700]">5 Working Days</p>
         <div className="flex justify-between">

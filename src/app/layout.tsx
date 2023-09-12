@@ -1,11 +1,20 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Providers from "@/components/ui/Provider";
+import { ClerkProvider, auth } from "@clerk/nextjs";
+//-----------------------------------
+import { Roboto } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
+//-------------------------------------
+
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ecom Hackathon",
@@ -17,18 +26,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { userId } = auth();
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <ClerkProvider>
         <Providers>
-          <main>
-            <Header />
+          <body className={roboto.className}>
+            <main>
+              <Header userId={userId as string} />
 
-            {children}
-            <Footer />
-          </main>
+              {children}
+              <Footer />
+            </main>
+          </body>
         </Providers>
-      </body>
+      </ClerkProvider>
     </html>
   );
 }

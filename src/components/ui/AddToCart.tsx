@@ -12,6 +12,7 @@ import { Cart } from "@/lib/drizzle";
 type IProps = {
   product: CartProduct;
   qty: number;
+  userId: string;
 };
 
 type CartData = {
@@ -21,9 +22,8 @@ type CartData = {
 };
 
 const AddToCart = (props: IProps) => {
-  const userId = "abc123";
   const getDataFromDB = async () => {
-    const res = await fetch(`/api/cart/${userId}`);
+    const res = await fetch(`/api/cart/${props.userId}`);
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
@@ -41,9 +41,12 @@ const AddToCart = (props: IProps) => {
         price: props.product.price,
         image: urlForImage(props.product.image[0]).url(),
         tagline: props.product.tagline,
-        total_price: props.product.price * qty,
+        total_price: props.product.price * props.qty,
       }),
     });
+    if (!res.ok) {
+      throw new Error("Failed to add Data to Cart");
+    }
   };
 
   const handleCart = async () => {
@@ -60,7 +63,7 @@ const AddToCart = (props: IProps) => {
           body: JSON.stringify({
             product_id: props.product._id,
             quantity: newQauntity,
-            price: newTotalPrice,
+            total_price: newTotalPrice,
           }),
         });
         if (!res.ok) {

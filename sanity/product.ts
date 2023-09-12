@@ -47,8 +47,7 @@ export const product = defineType({
     defineField({
       name: "tagline",
       title: "Product Tagline",
-      type: "reference",
-      to: [{ type: "tagline" }],
+      type: "string",
     }),
 
     defineField({

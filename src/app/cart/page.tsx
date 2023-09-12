@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useAppSelector } from "@/store/store";
 import { ShoppingBag } from "lucide-react";
+import StripeCheckoutButton from "@/components/ui/CheckOut";
 
 const Cart = () => {
   const cartItems = useAppSelector((state) => state.cart.items);
   const totalItems = useAppSelector((state) => state.cart.totalQuantity);
   const totalPrice = useAppSelector((state) => state.cart.totalAmount);
+
   if (cartItems.length > 0) {
     return (
       <div className="m-[4rem] min-[1000px]:p-[3rem] min-[1210px]:my-[4rem] min-[1210px]:mx-[6rem] min-[1290px]:mx-[8rem]">
@@ -22,8 +24,8 @@ const Cart = () => {
               <CartProductCard key={element._id} cartItem={element} />
             ))}
           </div>
-          <div className="flex-1 p-[2rem]">
-            <div className="flex flex-col  gap-[2rem] bg-[#fbfcff]">
+          <div className="flex-1 p-[1rem]   ">
+            <div className="flex flex-col p-[2rem]  gap-[2rem] bg-slate-200 rounded-2xl ">
               <h1 className=" text-xl font-bold">Order Summary</h1>
 
               <div className="flex justify-between gap-[4rem]">
@@ -36,12 +38,8 @@ const Cart = () => {
                 <h2 className="text-xl">${totalPrice}</h2>
               </div>
 
-              <div>
-                <Link href="./products">
-                  <Button className="bg-[#212121] h-12 px-8 mt-6 rounded-none cursor-pointer border-t-2 border-l-2 border-gray-500">
-                    Process to Checkout
-                  </Button>
-                </Link>
+              <div className="flex items-center justify-center">
+                <StripeCheckoutButton products={cartItems} />
               </div>
             </div>
           </div>

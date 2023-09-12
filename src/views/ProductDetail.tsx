@@ -5,17 +5,19 @@ import React, { useState } from "react";
 import { CartProduct, Product, ProductDetails } from "@/utils/types";
 import { urlForImage } from "../../sanity/lib/image";
 import AddToCart from "@/components/ui/AddToCart";
+import { auth } from "@clerk/nextjs";
 
 //
 
 // Type definition for Component Props
 interface ProductProps {
   product: ProductDetails;
+  userId: string;
 }
 
 // This is the Component function for rendering details of a Single Product (fetched from Sanity)
 // using props parameter when we click on Single Product
-const ProductDetail: React.FC<ProductProps> = ({ product }) => {
+const ProductDetail: React.FC<ProductProps> = ({ product, userId }) => {
   // "product" is the return of data fetching from Sanity
 
   const cartPorduct: CartProduct = {
@@ -69,14 +71,9 @@ const ProductDetail: React.FC<ProductProps> = ({ product }) => {
                 <div>
                   <h1 className="text-2xl">{product.title}</h1>
 
-                  {Object.entries(product.tagline).map(([key, value]) => (
-                    <h2
-                      key={key}
-                      className="text-base text-gray-400 font-semibold "
-                    >
-                      {value}
-                    </h2>
-                  ))}
+                  <h2 className="text-base text-gray-400 font-semibold ">
+                    {product.tagline}
+                  </h2>
                 </div>
 
                 <div>
@@ -105,7 +102,11 @@ const ProductDetail: React.FC<ProductProps> = ({ product }) => {
                 </div> */}
                 <div className="flex items-end mt-6 gap-x-3">
                   <div>
-                    <AddToCart product={cartPorduct} qty={1} />
+                    <AddToCart
+                      product={cartPorduct}
+                      qty={1}
+                      userId={userId as string}
+                    />
                   </div>
                   <div className="text-xl font-bold">
                     ${product.price.toFixed(2)}

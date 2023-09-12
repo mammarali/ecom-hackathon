@@ -29,11 +29,8 @@ const AllProductCard = (props: {
             height={270}
           ></Image>
           <h3 className="font-bold text-lg mt-3 ">{props.title}</h3>
-          {Object.entries(props.tagline).map(([key, value]) => (
-            <p key={key} className="font-bold text-lg text-gray-500 ">
-              {value}
-            </p>
-          ))}
+
+          <p className="font-bold text-lg text-gray-500 ">{props.tagline}</p>
 
           <p className="font-bold text-lg ">${props.price}</p>
         </div>
