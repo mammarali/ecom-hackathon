@@ -1,6 +1,7 @@
 import { cartTable, db } from "@/lib/drizzle";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const endPointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
@@ -10,8 +11,8 @@ export const POST = async (req: any, res: any) => {
 
   try {
     const rawBody = await req.text();
-    const sig = headersList.get("stripe-signature");
-
+    const sig = headersList.get("Stripe-Signature");
+    console.log(sig);
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: "2023-08-16",
     });
