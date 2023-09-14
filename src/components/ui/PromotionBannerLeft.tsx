@@ -15,7 +15,7 @@ export default async function PromotionBannerLeft() {
   return (
     <>
       {contentData.map((item) => (
-        <div key="bannerleft" className="flex flex-col w-screen gap-2 ">
+        <div key="bannerleft" className="flex-1 flex-col gap-4 ">
           <div className="flex flex-col  sm:flex-row items-center justify-between px-8 bg-[#d6d6d8]">
             <section className="flex flex-col">
               <h3 className="font-bold text-3xl mt-3 ">
@@ -31,7 +31,7 @@ export default async function PromotionBannerLeft() {
             ></Image>
           </div>
 
-          <div className="flex flex-col  px-8 pb-8 pt-12 items-center  bg-[#212121] ">
+          <div className="flex flex-col mt-[1rem]  px-8 pb-8 pt-12 items-center  bg-[#212121] ">
             <h3 className="text-[#fff] text-center font-bold text-3xl mb-4 ">
               {item.promo_info}
             </h3>
